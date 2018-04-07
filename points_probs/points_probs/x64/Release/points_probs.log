@@ -1,0 +1,14 @@
+﻿  Source.cpp
+Source.cpp(161): warning C4838: преобразование из "double" в "float" требует сужающего преобразования
+Source.cpp(161): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+Source.cpp(202): warning C4838: преобразование из "double" в "float" требует сужающего преобразования
+Source.cpp(202): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+Source.cpp(204): warning C4838: преобразование из "double" в "float" требует сужающего преобразования
+Source.cpp(204): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+Source.cpp(284): warning C4101: num: неиспользованная локальная переменная
+  Создание кода
+  2 of 163 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Создание кода завершено
+  points_probs.vcxproj -> C:\Users\Артем\source\repos\points_probs\x64\Release\points_probs.exe

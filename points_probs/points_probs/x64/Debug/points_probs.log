@@ -1,0 +1,9 @@
+﻿  Source.cpp
+c:\users\артем\source\repos\points_probs\points_probs\source.cpp(161): warning C4838: преобразование из "double" в "float" требует сужающего преобразования
+c:\users\артем\source\repos\points_probs\points_probs\source.cpp(161): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+c:\users\артем\source\repos\points_probs\points_probs\source.cpp(202): warning C4838: преобразование из "double" в "float" требует сужающего преобразования
+c:\users\артем\source\repos\points_probs\points_probs\source.cpp(202): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+c:\users\артем\source\repos\points_probs\points_probs\source.cpp(204): warning C4838: преобразование из "double" в "float" требует сужающего преобразования
+c:\users\артем\source\repos\points_probs\points_probs\source.cpp(204): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+c:\users\артем\source\repos\points_probs\points_probs\source.cpp(284): warning C4101: num: неиспользованная локальная переменная
+  points_probs.vcxproj -> C:\Users\Артем\source\repos\points_probs\x64\Debug\points_probs.exe

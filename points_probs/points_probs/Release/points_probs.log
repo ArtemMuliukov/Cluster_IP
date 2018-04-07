@@ -1,0 +1,15 @@
+﻿  Source.cpp
+Source.cpp(64): warning C4018: <: несоответствие типов со знаком и без знака
+Source.cpp(71): warning C4018: <: несоответствие типов со знаком и без знака
+Source.cpp(81): warning C4018: <: несоответствие типов со знаком и без знака
+Source.cpp(94): warning C4018: <: несоответствие типов со знаком и без знака
+Source.cpp(216): warning C4018: <: несоответствие типов со знаком и без знака
+Source.cpp(221): warning C4018: <: несоответствие типов со знаком и без знака
+Source.cpp(224): warning C4018: <: несоответствие типов со знаком и без знака
+Source.cpp(255): warning C4101: num: неиспользованная локальная переменная
+  Создание кода
+  150 of 151 functions (99.3%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Создание кода завершено
+  points_probs.vcxproj -> C:\Users\Артем\source\repos\points_probs\Release\points_probs.exe
