@@ -11,17 +11,18 @@
 #include <stdio.h>
 #include <time.h>
 #include <iostream>
-
+#include <string>
 
 using namespace std;
 
+// Variables used by both functions, hold information about onstructed tree
 extern int* tree_starts_saved = 0;
 extern double* tree_saved = 0;
 extern int m_size = 0;
 extern int h_size = 0;
 extern int tr_size = 0;
 
-// struct contain the point data
+// struct contain one point of tree for intermediate processing of build_tree fuction
 struct point {
 	vector<double> hiden; // Real object parameters
 	vector<double> measured; // Mesured point parameters
@@ -40,7 +41,7 @@ struct vertex {
 	vector<double> measured_center;
 };
 
-// transform point data to vector
+// transform point data to vector (from array to vector)
 vector<double> transform_point(double* point, int size) {
 	vector<double> arr(size);
 	for (int i = 0; i < size; ++i) {
@@ -49,6 +50,7 @@ vector<double> transform_point(double* point, int size) {
 	return arr;
 }
 
+//array to object point
 vector<point>* transform_mesured_data(double* points, int number_points,
 	int hiden_size, int mesured_size) {
 	vector<point>* res = new vector<point>(number_points);
@@ -59,11 +61,10 @@ vector<point>* transform_mesured_data(double* points, int number_points,
 	return res;
 }
 
-
-// build false binary tree and save data in tree. Tree should be allocated before call [start; end)
+// build pseudo-binary tree and save data in tree. Tree should be allocated before call [start; end)
 int build(int start, int end, vector<point>* data, vector<vertex>* tree, int step) {
 
-	//make vertex
+	//make verteces
 	(*tree)[step].data_start = start;
 	(*tree)[step].data_end = end;
 	for (int i = 0; i < (*data)[0].hiden.size(); ++i) {
@@ -110,15 +111,12 @@ int build(int start, int end, vector<point>* data, vector<vertex>* tree, int ste
 			dim = i;
 		}
 	}
-	//debag
-	//if (end - start > 10000)
-	//	printf("%d %d %d\n", start, end, dim);
 
 	for (int i = start; i < end; ++i) {
 		(*data)[i].sorted_param = dim;
 	}
 
-	// medianth-stat partical sort and recursive call
+	// medianth-stat partical sort and recursive call off the general fuction
 	int mid = (end + start) / 2;
 	if (end - start >= 2) {
 		nth_element((*data).begin() + start, (*data).begin() + mid, (*data).begin() + end);
@@ -148,27 +146,27 @@ double count_dist(double* a, double* b, int num) {
 
 
 //////////////////////////////////////////////////////////////////////////////
-// next libs work in dll
+// next functions are callable in dll
 ////////////////////////////////////////////////////////////
-
-
 
 // function work with allocated arrays
 // data input data in format {hiden..., musured...}^N
-// tree_starts - indexes in data {start, end}^M, M - number of knots (as max, twice bigger than N)
-// tree - points in tree. fromat: {R, hiden..., musured...}^M 
 // measure - measured points in fromat {mearured...}
 // above array are ready, next is result of work
 // centers - centers of probs {hiden...}^K, K - number of return probs. less than num of points
-// probs - {1}^K
-//ratio_perm - the ration of R and sit dermited to reject, othercase we continue to split
-//is_buid_tree - do we need the heap building
+// indicatrix - centers of probs {mesured...}^K, K - number of return probs. less than num of points
+// dist_s - distances to clusters (needed to count probs)
+// weights - numbers of points in clusters, using as weights of BIG points
+// closest - closest found point
+// ratio_perm - the ration of R and sit dermited to reject, othercase we continue to split
+// is_buid_tree - do we need the heap building (optimal chose of next cluster, normally used)
+// max_clust_num - limit of returned clusters
 // return - num of probs (K)
 DllExport int c_probs(int number_points, int hiden_size, int mesured_size,
 	double* measure, double* centers, double* indicatrix, double* dist_s, int* weights, double* closest,
 	double ratio_perm, int is_buid_tree, bool load, int max_clust_num) {
 
-	//load if needed
+	//load if needed (only from  defauld foulder), normally not used
 	if (load) {
 		FILE* fout = fopen("built_tree_data.bin", "rb");
 		FILE* fconf = fopen("common_info.conf", "rt");
@@ -198,20 +196,15 @@ DllExport int c_probs(int number_points, int hiden_size, int mesured_size,
 	if (tree_saved == 0)
 		return -3;
 
-	//ofstream myfile;
-	//myfile.open("debugdata.txt", std::ofstream::out | std::ofstream::app);
-
 	vector<clust> cl_stack;// stack of clusters for checking
 	clust first = { 0, count_dist(tree_saved + 1 + hiden_size, measure, mesured_size) };
 	cl_stack.push_back(first);
 	if (is_buid_tree)
 		make_heap(cl_stack.begin(), cl_stack.end());
 
-
 	int probs_counter = 0;
 	double upper_bound_dist = DBL_MAX;
 	double smallest_dist = DBL_MAX;
-	//vector<int> nums_of_p_in_clust;
 	int comps_num = 0;
 	while (cl_stack.size() > 0) {
 		comps_num++;
@@ -225,7 +218,7 @@ DllExport int c_probs(int number_points, int hiden_size, int mesured_size,
 			measure, mesured_size);
 
 		// Work with this element
-		//******
+		//*****
 
 		// do it if cluster is to be thrown
 		if ((upper_bound_dist < dist - (tree_saved + (hiden_size + mesured_size + 1) * cur.num)[0] &&
@@ -236,7 +229,6 @@ DllExport int c_probs(int number_points, int hiden_size, int mesured_size,
 			split = 0;
 			dist_s[probs_counter] = dist*dist;
 			weights[probs_counter] = tree_starts_saved[2 * cur.num + 1] - tree_starts_saved[2 * cur.num];
-			//currently i pushed dist, not the probs
 			copy(tree_saved + cur.num * (hiden_size + mesured_size + 1) + 1,
 				tree_saved + cur.num * (hiden_size + mesured_size + 1) + 1 + hiden_size,
 				centers + probs_counter * hiden_size);
@@ -244,10 +236,6 @@ DllExport int c_probs(int number_points, int hiden_size, int mesured_size,
 				tree_saved + (cur.num + 1) * (hiden_size + mesured_size + 1),
 				indicatrix + probs_counter * hiden_size);
 			probs_counter++;
-			/*myfile << probs_counter << ' ' << cur.num << ' ' << cur.dist << " " <<
-				upper_bound_dist << " " << cl_stack.size() << " " << comps_num << std::endl;*/
-				//nums_of_p_in_clust.push_back(tree_starts_saved[2 * cur.num + 1] - tree_starts_saved[2 * cur.num]);
-				// smallest dist chandge
 		}
 
 		// new upped bound
@@ -288,11 +276,11 @@ DllExport int c_probs(int number_points, int hiden_size, int mesured_size,
 	}
 
 	return probs_counter;
-	//printf(" %d ", comps_num);
-	//return comps_num;
 }
 
 
+//description is the same as for c_probs
+//this version is just shorten, it doesn't return average clusters indicatices
 DllExport int c_probs_fast(int number_points, int hiden_size, int mesured_size,
 	double* measure, double* centers, double* dist_s, int* weights, double* closest,
 	double ratio_perm, int is_buid_tree, bool load, int max_clust_num) {
@@ -327,21 +315,15 @@ DllExport int c_probs_fast(int number_points, int hiden_size, int mesured_size,
 	if (tree_saved == 0)
 		return -3;
 
-	//ofstream myfile;
-	//myfile.open("debugdata.txt", std::ofstream::out | std::ofstream::app);
-
 	vector<clust> cl_stack;// stack of clusters for checking
 	clust first = { 0, count_dist(tree_saved + 1 + hiden_size, measure, mesured_size) };
 	cl_stack.push_back(first);
 	if (is_buid_tree)
 		make_heap(cl_stack.begin(), cl_stack.end());
 
-	//list<int> cl_stack;// stack of clusters for checking, old variant
-	//cl_stack.push_back(0);
 	int probs_counter = 0;
 	double upper_bound_dist = DBL_MAX;
 	double smallest_dist = DBL_MAX;
-	//vector<int> nums_of_p_in_clust;
 	int comps_num = 0;
 	while (cl_stack.size() > 0) {
 		comps_num++;
@@ -366,15 +348,11 @@ DllExport int c_probs_fast(int number_points, int hiden_size, int mesured_size,
 			split = 0;
 			dist_s[probs_counter] = dist*dist;
 			weights[probs_counter] = tree_starts_saved[2 * cur.num + 1] - tree_starts_saved[2 * cur.num];
-			//currently i pushed dist, not the probs
+			//next also may be deleted for option wich return neither centers of thrown clusters
 			copy(tree_saved + cur.num * (hiden_size + mesured_size + 1) + 1,
 				tree_saved + cur.num * (hiden_size + mesured_size + 1) + 1 + hiden_size,
 				centers + probs_counter * hiden_size);
 			probs_counter++;
-			/*myfile << probs_counter << ' ' << cur.num << ' ' << cur.dist << " " <<
-				upper_bound_dist << " " << cl_stack.size() << " " << comps_num << std::endl;*/
-				//nums_of_p_in_clust.push_back(tree_starts_saved[2 * cur.num + 1] - tree_starts_saved[2 * cur.num]);
-				// smallest dist chandge
 		}
 
 		// new upped bound
@@ -415,20 +393,31 @@ DllExport int c_probs_fast(int number_points, int hiden_size, int mesured_size,
 	}
 
 	return probs_counter;
-	//printf(" %d ", comps_num);
-	//return comps_num;
 }
 
 // function work with allocated arrays
 // data input data in format {hiden..., musured...}^N
 // tree_starts - indexes in data {start, end}^M, M - number of knots (as max, twice bigger than N)
 // tree - points in tree. fromat: {R, hiden..., musured...}^M 
+// number_points - number of points used for analysis, may be redused
+// save - bool if you with to save your tree as file
+// use_saved - bool if you want to use a tree saved in folder
+// folder_name - folder where use will put or get your tree
 DllExport int32_t build_tree(double* data, int32_t number_points,
-	int32_t hiden_size, int32_t mesured_size, int32_t save, int32_t use_saved) {
+	int32_t hiden_size, int32_t mesured_size, int32_t save, 
+	int32_t use_saved, char* folder_name) {
+
+	//construct saving/reading tree files 
+	std::string f_n1(folder_name);
+	f_n1 += "\\built_tree_data.bin";
+	std::string f_n2(folder_name);
+	f_n2 += "\\common_info.conf";
 
 	if (use_saved) {
-		FILE* fout = fopen("built_tree_data.bin", "rb");
-		FILE* fconf = fopen("common_info.conf", "rt");
+		FILE* fout = fopen(f_n1.c_str(), "rb");
+		FILE* fconf = fopen(f_n2.c_str(), "rt");
+		if ((fout == 0) || (fconf == 0))
+			return -5;
 		fscanf(fconf, "%ld", &number_points);
 		fscanf(fconf, "%d", &hiden_size);
 		fscanf(fconf, "%d", &mesured_size);
@@ -446,22 +435,15 @@ DllExport int32_t build_tree(double* data, int32_t number_points,
 		return 1;
 	}
 
+	//memory needed to allocate, with some capacity
 	tr_size = 2 << (int(logb(number_points)) + 1);
 
 	vector<point>* data_vect = transform_mesured_data(data, number_points, hiden_size, mesured_size);
 	vector<vertex>* tree_vect = new vector<vertex>(tr_size);
 
+	// this function build tree itself
+	// all other in this fuction is just saving or preparation
 	build(0, number_points, data_vect, tree_vect, 0);
-
-	// saving database/ not used
-	/*for (int i = 0; i < data_vect->size(); ++i) {
-	memcpy(&(data[i * (hiden_size + mesured_size)]),
-	(*data_vect)[i].hiden.data(),
-	hiden_size * sizeof(double));
-	memcpy(&(data[i * (hiden_size + mesured_size) + hiden_size]),
-	(*data_vect)[i].measured.data(),
-	mesured_size * sizeof(double));
-	}*/
 
 	tree_starts_saved = new int[tr_size * 2];
 	tree_saved = new double[(1 + hiden_size + mesured_size) * tr_size];
@@ -483,8 +465,8 @@ DllExport int32_t build_tree(double* data, int32_t number_points,
 	}
 
 	if (save) {
-		FILE* fout = fopen("built_tree_data.bin", "wb");
-		FILE* fconf = fopen("common_info.conf", "wt");
+		FILE* fout = fopen(f_n1.c_str(), "wb");
+		FILE* fconf = fopen(f_n2.c_str(), "wt");
 		fprintf(fconf, "%ld ", number_points);
 		fprintf(fconf, "%d ", hiden_size);
 		fprintf(fconf, "%d ", mesured_size);
@@ -494,6 +476,7 @@ DllExport int32_t build_tree(double* data, int32_t number_points,
 		fclose(fconf);
 		fclose(fout);	
 	}
+
 	return 1;
 }
 
@@ -503,7 +486,7 @@ double maltsev_norm_func(double num) {
 
 
 //////////////////////////////////////////////////
-//lower the tests
+//lower only tests, not used in the dll aplication, only for debag
 ////////////////////////////////////////////////////
 
 // Fuction for test of saving tree data
@@ -549,7 +532,7 @@ void build_and_save_tree() {
 
 	int upperbound_tree = 2 << (int(logb(database_size)) + 1);
 
-	build_tree(data, database_size, hid_size, mes_size, true, 0);
+	//build_tree(data, database_size, hid_size, mes_size, true, 0);
 
 	return;
 }
