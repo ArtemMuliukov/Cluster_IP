@@ -13,5 +13,6 @@ indicatrices analysis, with and without return of detailed clusters information)
 You can find the connection of the dll in page 4 of code window.
 
 "dll" is a full project for Microsoft Visual Studio. You can reassemble it with any needed changes, all needed code is in one file, 
-by the adress "NSU_Diplom_Clustering/actual_code/dll/test_dll_creation/test.cpp". MVS project may be opened (with all needed dll installations) by runnig a file "test_dll_creation.sln". All needed files are supplied
-The prepeared dll you can already find on adress "NSU_Diplom_Clustering/actual_code/dll/Release/test_dll_creation.dll"
+by the adress "NSU_Diplom_Clustering/actual_code/dll/test_dll_creation/test.cpp". MVS project may be opened (with all needed dll installations) by runnig a file "test_dll_creation.sln". All needed files are supplied.
+
+The prepeared dll you can already find on adress "NSU_Diplom_Clustering/actual_code/dll/Release/test_dll_creation.dll".
