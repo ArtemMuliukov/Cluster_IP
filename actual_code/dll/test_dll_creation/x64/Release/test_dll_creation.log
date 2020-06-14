@@ -1,0 +1,21 @@
+﻿  test.cpp
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(200,31): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(200,31): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(257,45): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(257,45): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(259,47): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(259,47): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(319,31): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(319,31): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(374,45): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(374,45): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(376,47): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(376,47): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(512,9): warning C4101:  'num': unreferenced local variable
+     Creating library E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\x64\Release\test_dll_creation.lib and object E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\x64\Release\test_dll_creation.exp
+  Generating code
+  3 of 315 functions ( 1.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  test_dll_creation.vcxproj -> E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\x64\Release\test_dll_creation.dll

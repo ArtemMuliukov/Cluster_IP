@@ -1,0 +1,12 @@
+﻿  test.cpp
+E:\OnEngFiles\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(199,31): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(199,31): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(254,45): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(254,45): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(256,47): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(256,47): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(339,18): warning C4477:  'fprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'unsigned __int64'
+E:\OnEngFiles\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(339,18): message :  consider using '%zd' in the format string
+E:\OnEngFiles\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(381,9): warning C4101:  'num': unreferenced local variable
+     Creating library E:\OnEngFiles\test labview\4_add_cluster_lib\dll_creation\x64\Debug\test_dll_creation.lib and object E:\OnEngFiles\test labview\4_add_cluster_lib\dll_creation\x64\Debug\test_dll_creation.exp
+LINK : fatal error LNK1561: entry point must be defined
