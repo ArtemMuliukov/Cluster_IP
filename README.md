@@ -18,4 +18,4 @@ by the adress "NSU_Diplom_Clustering/actual_code/dll/test_dll_creation/test.cpp"
 The prepeared dll you can already find on adress "NSU_Diplom_Clustering/actual_code/dll/Release/test_dll_creation.dll".
 
 
-Also you can find Jupyter notebooks used for tests in Python or constructing of graphs in folder "Python tests"
+Also you can find Jupyter notebooks used for tests in Python or constructing of graphs in folder "Python tests".
