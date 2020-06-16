@@ -1,21 +1,21 @@
-﻿  test.cpp
-E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(200,31): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
-E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(200,31): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
-E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(257,45): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
-E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(257,45): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
-E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(259,47): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
-E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(259,47): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
-E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(319,31): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
-E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(319,31): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
-E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(374,45): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
-E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(374,45): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
-E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(376,47): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
-E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(376,47): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
-E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\test.cpp(512,9): warning C4101:  'num': unreferenced local variable
-     Creating library E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\x64\Release\test_dll_creation.lib and object E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\x64\Release\test_dll_creation.exp
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(452,5): warning MSB8028: The intermediate directory (x64\Release\) contains files shared from another project (test_dll_creation.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  cluster_ip_code.cpp
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\cluster_ip_code.cpp(201,31): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\cluster_ip_code.cpp(201,31): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\cluster_ip_code.cpp(258,45): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\cluster_ip_code.cpp(258,45): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\cluster_ip_code.cpp(260,47): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\cluster_ip_code.cpp(260,47): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\cluster_ip_code.cpp(320,31): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\cluster_ip_code.cpp(320,31): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\cluster_ip_code.cpp(375,45): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\cluster_ip_code.cpp(375,45): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\cluster_ip_code.cpp(377,47): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\test_dll_creation\cluster_ip_code.cpp(377,47): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+     Creating library E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\x64\Release\cluster_ip.lib and object E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\x64\Release\cluster_ip.exp
   Generating code
-  3 of 315 functions ( 1.0%) were compiled, the rest were copied from previous compilation.
+  1 of 315 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  test_dll_creation.vcxproj -> E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\x64\Release\test_dll_creation.dll
+  test_dll_creation.vcxproj -> E:\OnEngFiles - science\test labview\4_add_cluster_lib\dll_creation\x64\Release\cluster_ip.dll

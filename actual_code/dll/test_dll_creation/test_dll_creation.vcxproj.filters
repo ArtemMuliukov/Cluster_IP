@@ -15,12 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="test.cpp">
+    <ClCompile Include="cluster_ip_code.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="test.def">
+    <Text Include="cluster_ip_code.def">
       <Filter>Исходные файлы</Filter>
     </Text>
   </ItemGroup>
