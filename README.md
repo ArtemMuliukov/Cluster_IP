@@ -1,4 +1,4 @@
-# NSU_Diplom_Clustering
+# Cluster_IP
 
 Files used in diploma work of Muliukov AR.
 
