@@ -1,6 +1,10 @@
 # Cluster_IP
 
+## Content of the repository
+
 Files used in diploma work of Muliukov AR.
+
+## Presented files
 
 Here you can find all significant parts of the work. Text version (and more deep description) 
 of the work you can reed in the file Dipoma_final_version.pdf
