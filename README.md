@@ -19,3 +19,4 @@ The prepeared dll you can already find on adress "NSU_Diplom_Clustering/actual_c
 
 
 Also you can find Jupyter notebooks used for tests in Python or constructing of graphs in folder "Python tests".
+Short information about it's usage you can find in local readme file.
