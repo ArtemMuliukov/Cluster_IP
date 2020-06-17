@@ -13,7 +13,7 @@ The classical method is based on modeling the signal using a third party softwar
 
 The libriary is close to classical realisation of kd-tree, except the possibility of flexible search with returning varing number of  seen clusters to enrich the solution with it's statistical estimation. Also you could vary the depth of search wich will help you to set convinient ratio speed/accuracy for the counted statistical estimations (see choose of ratio parameter in c_probs function).
 
-The solution is designed as C++ code in Microsoft Visual Studio. The code is compiled into a single dll file that has 2 key functions. 
+The solution is designed as C++ code in Microsoft Visual Studio. The code is compiled into a single dll file that has 2 key functions. It's detailed declaration you an find in the code file[code file](actual_code/cluster_ip_dll/test_dll_creation/cluster_ip_code.cpp), here there are just short explications.
 
 1) "build_tree" - allows you to load an array of data into the dll, which will be converted into a binary pseudo-tree and stored in the internal memory of the DLL for subsequent operation of the program. 
 
