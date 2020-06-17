@@ -13,11 +13,11 @@ Here you could find
 
 Here you can find all significant parts of the work. Text version (and more deep description) of the work you can reed in the file [Dipoma_final_version](Diploma_final_version.pdf) (in Russian)
 
-All current code is in the folder 'actual_code'. There you can find 2 folders - "Labview" and "dll". 
+All current code is in the folder ["actual_code"](actual_code). There you can find 2 folders - "Labview" and "dll". 
 
-"Labview" - with an example of dll usage in IDE LabVIEW. 
-The code itself in the file "Experiment_treatment1_ArtemVer1KG.vi" and in "Experiment_treatment1_ArtemVer2_FastKG.vi" (for 2 functions of indicatrices analysis, with and without return of detailed clusters information).
-You can find the connection of the dll in page 4 of code window.
+["Labview"](actual_code/Labview) - with an example of dll usage in IDE LabVIEW. 
+The code itself in the file ["Experiment_treatment1_ArtemVer1KG.vi"](actual_code/Labview/Experiment_treatment1_ArtemVer1KG.vi) and in  ["Experiment_treatment1_ArtemVer2_FastKG.vi"](actual_code/Labview/Experiment_treatment1_ArtemVer2_FastKG.vi) (for 2 functions of indicatrices analysis, with and without return of detailed clusters information).
+How to connect the dll you can see at page 4 of code window in the LabVIEW .vi files.
 
 "dll" is a full project for Microsoft Visual Studio. You can reassemble it with any needed changes, all needed code is in one file, 
 by the adress "NSU_Diplom_Clustering/actual_code/dll/test_dll_creation/test.cpp". MVS project may be opened (with all needed dll installations) by runnig a file "test_dll_creation.sln". All needed files are supplied.
