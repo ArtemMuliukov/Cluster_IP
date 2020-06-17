@@ -1,13 +1,17 @@
-# Cluster_IP
+# Cluster_IP - version 0.3
 
 ## Content of the repository
 
-Files used in diploma work of Muliukov AR.
+### License
+The libriary is a product of work under master thesys of Muliukov AR. You could use any content of the code in this repository under license GPL3.
+
+### Content
+
+Here you could find
 
 ## Presented files
 
-Here you can find all significant parts of the work. Text version (and more deep description) 
-of the work you can reed in the file Dipoma_final_version.pdf
+Here you can find all significant parts of the work. Text version (and more deep description) of the work you can reed in the file Dipoma_final_version.pdf (in Russian)
 
 All current code is in the folder 'actual_code'. There you can find 2 folders - "Labview" and "dll". 
 
