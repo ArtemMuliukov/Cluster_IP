@@ -23,7 +23,9 @@ The effectiveness of this implementation was tested on a real biological problem
 
 ## Presented files
 
-Here you can find all significant parts of the work. Text version (and more deep description) of the work you can reed in the file [Dipoma_final_version](Diploma_final_version.pdf) (in Russian)
+Here you can find all significant parts of the work. Text version (and more deep description) of the work you can reed in the file [Dipoma_final_version](Extra_info-Publications/Diploma_final_version.pdf) (in Russian)
+
+Less detaled but quite informative will be [this poster](Extra_info-Publications/poster_clustering_ELS18.pdf)(in English) from ELS18 (Texas, USA) or [this presentation](Extra_info-Publications/ISSC2020.pdf) from ISSC 2020 (Novosibirsk, Russia).
 
 All current code is in the folder ["actual_code"](actual_code). There you can find 2 folders - "LabView" and "cluster_ip_dll". 
 
