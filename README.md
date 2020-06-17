@@ -25,4 +25,4 @@ MVS project may be opened (with all needed dll installations) by runnig a file "
 
 Either you can find a prepared dll here: ["cluster_ip.dll"](NSU_Diplom_Clustering/actual_code/dll/Release/cluster_ip.dll).
 
-Also you can find Jupyter notebooks used for tests in Python or constructing of graphs (for conferences or the diploma work itself) in folder["Python tests"](Python tests). Short information about it's content you can find in local readme file.
+Also you can find Jupyter notebooks used for tests in Python or constructing of graphs (for conferences or the diploma work itself) in folder ["Python tests"](Python tests). Short information about it's content you can find in local readme file.
