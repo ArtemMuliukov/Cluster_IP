@@ -7,7 +7,17 @@ The libriary is a product of work under master thesys of Muliukov AR. You could 
 
 ### Content
 
-Here you could find
+This work is devoted to modernization of a standard method for solving inverse problems by building a hierarchical data structure over a pre-computed signal database. The proposed method was also tested to solve the problem of determining platelet parameters based on their signals measured on a scanning flow cytometer.
+
+The classical method is based on modeling the signal using a third party software package (for example, for platelets, it can be [ADDA](https://github.com/adda-team/adda)) and comparing the measured signal with each of the available data in this database to find the nearest by L2 metric (euclidean). The method proposed here allows you to significantly speed up the search among the database objects by using KD-tree. A distinctive feature of the work is the output of discarded distances, which allows you to evaluate the solution over the entire space of possible solutions and use this knowledge to calculate statistical estimates of the resulting solution.
+
+The solution is designed as C++ code in Microsoft Visual Studio. The code is compiled into a single dll file that has 2 key functions. 
+
+1) "build_tree" - allows you to load an array of data into the dll, which will be converted into a binary pseudo-tree and stored in the internal memory of the DLL for subsequent operation of the program. 
+
+2) "c_probs"  - a function that finds the nearest element in the tree, as well as outputs the viewed and discarded classes and distances to them along the way, which can be used for subsequent calculations (an example can be found in the folder with tests in LabVIew)
+
+The effectiveness of this implementation was tested on a real biological problem (you can find the tests in the Python_code folder) and presented at various conferences, as well as the work was presented as qualification master's thesis work.
 
 ## Presented files
 
