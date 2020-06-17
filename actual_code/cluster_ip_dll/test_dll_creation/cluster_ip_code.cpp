@@ -1,4 +1,30 @@
-﻿#define _SCL_SECURE_NO_WARNINGS
+/*
+* CLUTER_IP 0.3, under GPL-3.0 License.
+*
+* The solution is designed as C++ code in Microsoft Visual Studio. 
+
+* The code may be compiled into one dll file. 
+* The libriary is close to classical realisation of kd-tree, 
+* except the possibility of flexible search with returning bigger number of clusters (choose of ratio parameter in c_probs function),
+* which could be used for counting statistical estimatins of found solution with different ratio speed/accuracy.
+
+* The code is compiled into a single dll file that has 2 key functions.
+
+* "build_tree" - allows you to load an array of data into the dll, 
+* which will be converted into a binary pseudo-tree and stored in the 
+* internal memory of the DLL for subsequent operation of the program.
+
+* "c_probs" - a function that finds the nearest element in the tree,
+* as well as outputs the viewed and discarded classes and distances to them along the way, 
+* which can be used for subsequent calculations (an example can be found in the folder with tests in LabVIew)
+
+* The effectiveness of this implementation was tested on a real biological problem
+* and presented at various conferences(for ex. ELS-XVII conf.), 
+* as well as the work was presented as qualification master's thesis work of Muliukov Artem.
+
+*/
+
+#define _SCL_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
 #define DllImport   __declspec( dllimport )  
 #define DllExport   __declspec( dllexport ) 
