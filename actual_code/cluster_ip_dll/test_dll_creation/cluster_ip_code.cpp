@@ -3,10 +3,11 @@
 *
 * The solution is designed as C++ code in Microsoft Visual Studio. 
 
-* The code may be compiled into one dll file. 
-* The libriary is close to classical realisation of kd-tree, 
-* except the possibility of flexible search with returning bigger number of clusters (choose of ratio parameter in c_probs function),
-* which could be used for counting statistical estimatins of found solution with different ratio speed/accuracy.
+* The library is close to classical realisation of kd-tree, 
+* except the possibility of flexible search with returning varying number of seen clusters 
+* to enrich the solution with it's statistical estimation. 
+* Also you could vary the depth of search wich will help you to set appropriate ratio speed/accuracy 
+* for the counted statistical estimations (see choose of ratio parameter in c_probs function).
 
 * The code is compiled into a single dll file that has 2 key functions.
 
