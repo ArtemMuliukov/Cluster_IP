@@ -21,7 +21,7 @@ How to connect the dll you can see at page 4 of code window in the LabVIEW .vi f
 
 ["cluster_ip_dll"](actual_code/cluster_ip_dll) is a full project for Microsoft Visual Studio. You can reassemble it with any needed changes, all the code is in one file - ["cluster_ip_code.cpp"](actual_code/cluster_ip_dll/test_dll_creation/cluster_ip_code.cpp). Also you may need to copy the file  ["cluster_ip_code.def"](actual_code/cluster_ip_dll/test_dll_creation/cluster_ip_code.def) to correctly declare functions for you linker.
 
-MVS project may be opened (with all needed dll installations) by runnig a file "test_dll_creation.sln", so by perpose the code is distributed with all needed config files.
+MVS project may be opened (with all needed dll installations) by runnig a file ["cluster_ip.sln"](actual_code/cluster_ip_dll/cluster_ip.sln), so by perpose the code is distributed with all needed config files.
  
 Either you can find a prepared dll here: ["cluster_ip.dll"](actual_code/cluster_ip_dll/x64/Release/cluster_ip.dll).
 
