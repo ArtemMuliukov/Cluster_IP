@@ -11,7 +11,7 @@ Here you could find
 
 ## Presented files
 
-Here you can find all significant parts of the work. Text version (and more deep description) of the work you can reed in the file Dipoma_final_version.pdf (in Russian)
+Here you can find all significant parts of the work. Text version (and more deep description) of the work you can reed in the file [Dipoma_final_version](https://github.com/ArtemMuliukov/Cluster_IP/Dipoma_final_version.pdf) (in Russian)
 
 All current code is in the folder 'actual_code'. There you can find 2 folders - "Labview" and "dll". 
 
