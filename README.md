@@ -9,7 +9,7 @@ The libriary is a product of work under master thesys of Muliukov AR. You could 
 
 This work is devoted to modernization of a standard method for solving inverse problems by building a hierarchical data structure over a pre-computed signal database. The proposed method was also tested to solve the problem of determining platelet parameters based on their signals measured on a scanning flow cytometer.
 
-The classical method is based on modeling the signal using a third party software package (for example, for platelets, it can be [ADDA](https://github.com/adda-team/adda)) and comparing the measured signal with each of the available data in this database to find the nearest by L2 metric (euclidean). The method proposed here allows you to significantly speed up the search among the database objects by using KD-tree. A distinctive feature of the work is the output of discarded distances, which allows you to evaluate the solution over the entire space of possible solutions and use this knowledge to calculate statistical estimates of the resulting solution.
+The classical method is based on modeling the signal using a third party software package (for example, for platelets, it can be [ADDA](https://github.com/adda-team/adda)) and comparing the measured signal with each of the available data in this database to find the nearest by L2 metric (euclidean). The method proposed here allows you to significantly speed up the search among the database objects by using KD-tree. A distinctive feature of the work is the output of discarded distances, which allows you to evaluate the solution over the entire space of possible solutions and use this knowledge to calculate statistical estimates of the resulting solution. The statictical estimations were presened in articles [1](https://www.spiedigitallibrary.org/journals/Journal-of-Biomedical-Optics/volume-19/issue-08/085004/Additivity-of-light-scattering-patterns-of-aggregated-biological-particles/10.1117/1.JBO.19.8.085004.full?SSO=1) and [2](https://www.spiedigitallibrary.org/journals/Journal-of-Biomedical-Optics/volume-14/issue-06/064036/Is-there-a-difference-between-T--and-B-lymphocyte/10.1117/1.3275471.full).
 
 The solution is designed as C++ code in Microsoft Visual Studio. The code is compiled into a single dll file that has 2 key functions. 
 
@@ -17,7 +17,7 @@ The solution is designed as C++ code in Microsoft Visual Studio. The code is com
 
 2) "c_probs"  - a function that finds the nearest element in the tree, as well as outputs the viewed and discarded classes and distances to them along the way, which can be used for subsequent calculations (an example can be found in the folder with tests in LabVIew)
 
-The effectiveness of this implementation was tested on a real biological problem (you can find the tests in the Python_code folder) and presented at various conferences, as well as the work was presented as qualification master's thesis work.
+The effectiveness of this implementation was tested on a real biological problem (you can find the tests in the Python_code folder) and presented at various conferences(for ex. [here](https://www.giss.nasa.gov/staff/mmishchenko/ELS-XVII/)), as well as the work was presented as qualification master's thesis work.
 
 ## Presented files
 
