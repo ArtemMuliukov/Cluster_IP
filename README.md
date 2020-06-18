@@ -13,7 +13,7 @@ The classical method is based on modeling the signal using a third-party softwar
 
 The library is close to classical realisation of kd-tree, except the possibility of flexible search with returning varying number of  seen clusters to enrich the solution with it's statistical estimation. Also you could vary the depth of search wich will help you to set appropriate ratio speed/accuracy for the counted statistical estimations (see choose of ratio parameter in c_probs function).
 
-The solution is designed as C++ code in Microsoft Visual Studio. The code is compiled into a single dll file that has 2 key functions. It's detailed declaration you an find in the [code file](actual_code/cluster_ip_dll/test_dll_creation/cluster_ip_code.cpp), here there are just short explications.
+The solution is designed as C++ code in Microsoft Visual Studio. The code is compiled into a single dll file that has 2 key functions. It's detailed declaration you an find in the [code file](actual_code/cluster_ip_dll/cluster_ip/cluster_ip.cpp), here there are just short explications.
 
 1) "build_tree" - allows you to load an array of data into the dll, which will be converted into a binary pseudo-tree and stored in the internal memory of the DLL for subsequent operation of the program. 
 
@@ -33,7 +33,7 @@ All current code is in the folder ["actual_code"](actual_code). There you can fi
 The code itself in the file ["Experiment_treatment1_ArtemVer1KG.vi"](actual_code/LabView/Experiment_treatment1_ArtemVer1KG.vi) and in ["Experiment_treatment1_ArtemVer2_FastKG.vi"](actual_code/LabView/Experiment_treatment1_ArtemVer2_FastKG.vi) (for 2 functions of indicatrices analysis, with and without return of detailed clusters information).
 How to connect the dll you can see at page 4 of code window in the LabVIEW .vi files.
 
-["cluster_ip_dll"](actual_code/cluster_ip_dll) is a full project for Microsoft Visual Studio. You can reassemble it with any needed changes, all the code is in one file - ["cluster_ip_code.cpp"](actual_code/cluster_ip_dll/test_dll_creation/cluster_ip_code.cpp). Also you may need to copy the file  ["cluster_ip_code.def"](actual_code/cluster_ip_dll/test_dll_creation/cluster_ip_code.def) to correctly declare functions for you linker.
+["cluster_ip_dll"](actual_code/cluster_ip_dll) is a full project for Microsoft Visual Studio. You can reassemble it with any needed changes, all the code is in one file - ["cluster_ip.cpp"](actual_code/cluster_ip_dll/cluster_ip/cluster_ip.cpp). Also you may need to copy the file  ["cluster_ip.def"](actual_code/cluster_ip_dll/cluster_ip/cluster_ip.def) to correctly declare functions for you linker.
 
 MVS project may be opened (with all needed dll installations) by running a file ["cluster_ip.sln"](actual_code/cluster_ip_dll/cluster_ip.sln), so by purpose the code is distributed with all needed config files. But if just want to use the dll, you can find it completely prepared here: ["cluster_ip.dll"](actual_code/cluster_ip_dll/x64/Release/cluster_ip.dll).
 
