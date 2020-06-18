@@ -1,0 +1,6 @@
+﻿     Creating library E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\x64\Release\cluster_ip.lib and object E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\x64\Release\cluster_ip.exp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 315 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  cluster_ip.vcxproj -> E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\x64\Release\cluster_ip.dll

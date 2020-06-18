@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_dll_creation", "test_dll_creation\test_dll_creation.vcxproj", "{48D19E13-2568-4C76-BE82-C27A830D45B2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cluster_ip", "cluster_ip\cluster_ip.vcxproj", "{48D19E13-2568-4C76-BE82-C27A830D45B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
