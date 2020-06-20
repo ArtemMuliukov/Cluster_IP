@@ -1,11 +1,9 @@
 # Cluster_IP - version 0.3
 
-## Content of the repository
-
-### License
+## License
 The library is a product of a MSc project of Muliukov A.R. You can use any content of the code in this repository under GPL-3.0 license.
 
-### Content
+## Description
 
 This work is devoted to modernization of a standard method for solving parametic inverse problems by building a hierarchical data structure over a pre-computed signal database. The proposed method was tested to solve the problem of determining platelet parameters based on their signals measured on a scanning flow cytometer.
 
