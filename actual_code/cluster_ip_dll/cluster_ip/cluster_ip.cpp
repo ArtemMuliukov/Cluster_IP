@@ -1,13 +1,14 @@
 /*
-* CLUTER_IP 0.3, under GPL-3.0 License.
+* CLUSTER_IP 0.3, under GPL-3.0 License.
 *
 * The solution is designed as C++ code in Microsoft Visual Studio. 
 
 * The library is close to classical realisation of kd-tree, 
-* except the possibility of flexible search with returning varying number of seen clusters 
-* to enrich the solution with it's statistical estimation. 
-* Also you could vary the depth of search wich will help you to set appropriate ratio speed/accuracy 
-* for the counted statistical estimations (see choose of ratio parameter in c_probs function).
+* with addition of flexible search, returning varying number of considered clusters 
+* to enrich the solution (nearest element) with it's statistical estimates 
+* (like mathematical expectation and standard deviation). 
+* Also you could vary the depth of search to set appropriate compromise between speed and accuracy 
+* for the statistical estimates (see the choice of ratio parameter in c_probs function).
 
 * The code is compiled into a single dll file that has 2 key functions.
 
@@ -16,12 +17,11 @@
 * internal memory of the DLL for subsequent operation of the program.
 
 * "c_probs" - a function that finds the nearest element in the tree,
-* as well as outputs the viewed and discarded classes and distances to them along the way, 
+* as well as outputs the considered and discarded clusters (and distances to them) along the way, 
 * which can be used for subsequent calculations (an example can be found in the folder with tests in LabVIew)
 
 * The effectiveness of this implementation was tested on a real biological problem
-* and presented at various conferences(for ex. ELS-XVII conf.), 
-* as well as the work was presented as qualification master's thesis work of Muliukov Artem.
+* and presented at various conferences(e.g., ELS-XVII) and as a qualification master's thesis of Muliukov Artem.
 
 */
 
@@ -53,7 +53,7 @@ extern int tr_size = 0;
 struct point {
 	vector<double> hidden; // Real object parameters
 	vector<double> measured; // measured point parameters (the measured signal)
-	int sorted_param = 0; // advansed for build the tree
+	int sorted_param = 0; // the parameter number, along which the latest sort was performed (when building the tree)
 	friend bool operator<(point& a, point& b)
 	{
 		return a.measured[a.sorted_param] < b.measured[b.sorted_param];
@@ -89,7 +89,7 @@ vector<point>* transform_measured_data(double* points, int number_points, int hi
 
 // build pseudo-binary tree and save data in tree. The tree memory MUST be allocated before call [start; end)
 int build(int start, int end, vector<point>* data, vector<vertex>* tree, int step) {
-	//make verteces
+	//make vertices
 	(*tree)[step].data_start = start;
 	(*tree)[step].data_end = end;
 	for (int i = 0; i < (*data)[0].hidden.size(); ++i) {
@@ -119,7 +119,7 @@ int build(int start, int end, vector<point>* data, vector<vertex>* tree, int ste
 	(*tree)[step].R = sqrt(max_rad);
 	//////////////////
 
-	// searching biggest dimention-span {dim}
+	// searching for the largest dimension-span {dim}
 	double max_gap = 0;
 	int dim = 0;
 	for (int i = 0; i < (*data)[start].measured.size(); ++i) {
@@ -141,7 +141,7 @@ int build(int start, int end, vector<point>* data, vector<vertex>* tree, int ste
 		(*data)[i].sorted_param = dim;
 	}
 
-	// medianth-stat partical sort and recursive call off the general fuction
+	// medianth-stat partial sort and recursive call of the general fuction
 	int mid = (end + start) / 2;
 	if (end - start >= 2) {
 		nth_element((*data).begin() + start, (*data).begin() + mid, (*data).begin() + end);
@@ -174,27 +174,30 @@ double count_dist(double* a, double* b, int num) {
 // next functions are callable in dll
 ////////////////////////////////////////////////////////////
 
-// Next fuction takes given signal and finds the nearest point in databasesaved by (build_tree) fuction.
-// The found solution will be in array (double* nearest), also the fuction returns varios info about seen clusters.
+// Next fuction takes given signal and finds the nearest point in database saved by (build_tree) fuction.
+// The found solution will be in array (double* nearest), also the fuction returns various info about considered clusters 
+// (each is either a single point or a cluster that was discarded as a whole, i.e. they represent the highest level in the
+// tree reached along each branch). Below we denote them "final clusters".
 // The function works only with preliminary allocated arrays.
 // number_points, hidden_size, measured_size - sizes of dataset, 
-// number of object parameters and number of points in signal, respectively.
-// measure - measured points in fromat {mearured...}
-// above array are preliminary constructed, next there are resulting outputs
-// centers - centers of probs {hidden...}^K, K - number of return probs. less than num of points
-// signal - centers of probs {measured...}^K, K - number of return probs. less than num of points
-// dist_s - distances to clusters (needed to count probs)
-// weights - numbers of points in clusters, using as weights of BIG points
+// number of object parameters (characteristics) and number of points in signal, respectively.
+// measure - measured points in format {measured...}
+// above array are preliminary constructed, following ones are resulting outputs
+// centers - parameters, corresponding to centers of final clusters {hidden...}^K, K is discussed below 
+// signal - signals, corresponding to centers of clusters probs {measured...}^K
+// dist_s - distances to clusters (needed to calculate probs)
+// weights - numbers of points in clusters, further used as weights of these clusters
 // nearest - nearest found point
-// ratio_perm - the ration of R and sit dermited to reject, othercase we continue to split
-// is_buid_tree - do we need the heap building (optimal chose of next cluster, normally used)
-// max_clust_num - limit of returned clusters
-// return - num of probs (K)
+// ratio_perm - the maximum ratio of R and dist for rejecting cluster, otherwise we continue to split
+// is_build_heap - whether we need the heap building (for optimal choice of the next cluster, normally used)
+// max_clust_num - maximum number of returned clusters (for which memory is allocated). If larger number of clusters 
+//   is actually considered during search, the error is returned.
+// return - number of final clusters (K), satisfying K<=number_points and K<=max_clust_num
 DllExport int c_probs(int number_points, int hidden_size, int measured_size,
 	double* measure, double* centers, double* signal, double* dist_s, int* weights, double* nearest,
-	double ratio_perm, int is_buid_tree, bool load, int max_clust_num) {
+	double ratio_perm, int is_build_heap, bool load, int max_clust_num) {
 
-	//load if needed (only from  defauld foulder), normally not used
+	//load if needed (only from the default folder), normally not used
 	if (load) {
 		FILE* fout = fopen("built_tree_data.bin", "rb");
 		FILE* fconf = fopen("common_info.conf", "rt");
@@ -224,10 +227,11 @@ DllExport int c_probs(int number_points, int hidden_size, int measured_size,
 	if (tree_saved == 0)
 		return -3;
 
-	vector<clust> cl_stack;// stack of clusters for checking
+	// changing vector to standard array may potentially improve performance 
+	vector<clust> cl_stack;// stack of clusters for testing
 	clust first = { 0, count_dist(tree_saved + 1 + hidden_size, measure, measured_size) };
 	cl_stack.push_back(first);
-	if (is_buid_tree)
+	if (is_build_heap)
 		make_heap(cl_stack.begin(), cl_stack.end());
 
 	int probs_counter = 0;
@@ -238,20 +242,20 @@ DllExport int c_probs(int number_points, int hidden_size, int measured_size,
 		comps_num++;
 		int split = 1;
 		clust cur;
-		if (is_buid_tree)
+		if (is_build_heap)
 			cur = cl_stack[0];
 		else
 			cur = cl_stack[cl_stack.size() - 1];
 		double dist = count_dist(tree_saved + (hidden_size + measured_size + 1) * cur.num + 1 + hidden_size,
 			measure, measured_size);
 
-		// Work with chosen element
+		// Work with the chosen element
 		//*****
 
-		// do it if cluster is to be thrown
+		// do the following if cluster is to be discarded
 		if ((upper_bound_dist < dist - (tree_saved + (hidden_size + measured_size + 1) * cur.num)[0] &&
 			ratio_perm*dist > (tree_saved + (hidden_size + measured_size + 1) * cur.num)[0]) ||
-			tree_starts_saved[2 * (cur.num) + 1] - tree_starts_saved[2 * (cur.num)] == 1) { // here check of splitting
+			tree_starts_saved[2 * (cur.num) + 1] - tree_starts_saved[2 * (cur.num)] == 1) { // here test of splitting
 			if (max_clust_num <= probs_counter)
 				return -4;
 			split = 0;
@@ -277,7 +281,7 @@ DllExport int c_probs(int number_points, int hidden_size, int measured_size,
 				nearest);
 		}
 		//delete it from stack
-		if (is_buid_tree)
+		if (is_build_heap)
 			pop_heap(cl_stack.begin(), cl_stack.end());
 		cl_stack.pop_back();
 		//put new elements
@@ -286,7 +290,7 @@ DllExport int c_probs(int number_points, int hidden_size, int measured_size,
 				+ 1 + hidden_size, measure, measured_size) /*- tree[(2 * cur.num + 1)*(1 + hidden_size + measured_size)]*/ };
 			clust third = { 2 * cur.num + 2, count_dist(tree_saved + (2 * cur.num + 2) * (1 + hidden_size + measured_size)
 				+ 1 + hidden_size, measure, measured_size) /*- tree[(2 * cur.num + 2)*(1 + hidden_size + measured_size)]*/ };
-			if (is_buid_tree) {
+			if (is_build_heap) {
 				cl_stack.push_back(sec); push_heap(cl_stack.begin(), cl_stack.end());
 				cl_stack.push_back(third); push_heap(cl_stack.begin(), cl_stack.end());
 			}
@@ -308,10 +312,10 @@ DllExport int c_probs(int number_points, int hidden_size, int measured_size,
 
 
 //description is the same as for c_probs
-//this version is just shorten version of upper one, it doesn't return average clusters signals
+//this version is just a shorter version of the above one, it doesn't return average clusters signals
 DllExport int c_probs_fast(int number_points, int hidden_size, int measured_size,
 	double* measure, double* centers, double* dist_s, int* weights, double* nearest,
-	double ratio_perm, int is_buid_tree, bool load, int max_clust_num) {
+	double ratio_perm, int is_build_heap, bool load, int max_clust_num) {
 
 	//load if needed
 	if (load) {
@@ -343,10 +347,10 @@ DllExport int c_probs_fast(int number_points, int hidden_size, int measured_size
 	if (tree_saved == 0)
 		return -3;
 
-	vector<clust> cl_stack;// stack of clusters for checking
+	vector<clust> cl_stack;// stack of clusters for testing
 	clust first = { 0, count_dist(tree_saved + 1 + hidden_size, measure, measured_size) };
 	cl_stack.push_back(first);
-	if (is_buid_tree)
+	if (is_build_heap)
 		make_heap(cl_stack.begin(), cl_stack.end());
 
 	int probs_counter = 0;
@@ -357,7 +361,7 @@ DllExport int c_probs_fast(int number_points, int hidden_size, int measured_size
 		comps_num++;
 		int split = 1;
 		clust cur;
-		if (is_buid_tree)
+		if (is_build_heap)
 			cur = cl_stack[0];
 		else
 			cur = cl_stack[cl_stack.size() - 1];
@@ -367,10 +371,10 @@ DllExport int c_probs_fast(int number_points, int hidden_size, int measured_size
 		// Work with chosen element
 		//******
 
-		// do it if cluster is to be thrown
+		// do the following if cluster is to be discarded
 		if ((upper_bound_dist < dist - (tree_saved + (hidden_size + measured_size + 1) * cur.num)[0] &&
 			ratio_perm * dist >(tree_saved + (hidden_size + measured_size + 1) * cur.num)[0]) ||
-			tree_starts_saved[2 * (cur.num) + 1] - tree_starts_saved[2 * (cur.num)] == 1) { // here check of splitting
+			tree_starts_saved[2 * (cur.num) + 1] - tree_starts_saved[2 * (cur.num)] == 1) { // here test of splitting
 			if (max_clust_num <= probs_counter)
 				return -4;
 			split = 0;
@@ -394,7 +398,7 @@ DllExport int c_probs_fast(int number_points, int hidden_size, int measured_size
 				nearest);
 		}
 		//delete it from stack
-		if (is_buid_tree)
+		if (is_build_heap)
 			pop_heap(cl_stack.begin(), cl_stack.end());
 		cl_stack.pop_back();
 		//put new elements
@@ -403,7 +407,7 @@ DllExport int c_probs_fast(int number_points, int hidden_size, int measured_size
 				+ 1 + hidden_size, measure, measured_size) /*- tree[(2 * cur.num + 1)*(1 + hidden_size + measured_size)]*/ };
 			clust third = { 2 * cur.num + 2, count_dist(tree_saved + (2 * cur.num + 2) * (1 + hidden_size + measured_size)
 				+ 1 + hidden_size, measure, measured_size) /*- tree[(2 * cur.num + 2)*(1 + hidden_size + measured_size)]*/ };
-			if (is_buid_tree) {
+			if (is_build_heap) {
 				cl_stack.push_back(sec); push_heap(cl_stack.begin(), cl_stack.end());
 				cl_stack.push_back(third); push_heap(cl_stack.begin(), cl_stack.end());
 			}
@@ -424,16 +428,16 @@ DllExport int c_probs_fast(int number_points, int hidden_size, int measured_size
 }
 
 // Function below takes signals database and construct a pseudo-tree (of kd structure) 
-// in inside dll memory, it will be used by another fuction (c_probs of c_probs_fast).
-// Also the fuction my be used to open an already constructed tree (set use_saved = 1) or save it (set save = 1).
-// function work with allocated arrays
-// data input data in format {hidden..., musured...}^N
-// tree_starts - indexes in data {start, end}^M, M - number of knots (as max, twice bigger than N)
-// tree - points in tree. fromat: {R, hidden..., musured...}^M 
-// number_points - number of points used for analysis, may be redused
-// save - bool if you with to save your tree as file
-// use_saved - bool if you want to use a tree saved in folder
-// folder_name - folder where use will put or get your tree
+// in the internal dll memory, it will be used by another fuction (c_probs or c_probs_fast).
+// Also the fuction may be used to open the previouly constructed tree (set use_saved = 1) or save it (set save = 1).
+// function works with allocated arrays
+// data - input data in format {hidden..., measured...}^N
+// number_points, hidden_size, measured_size - sizes of dataset, 
+// number of object parameters (characteristics) and number of points in signal, respectively.
+// (number_points can be smaller than total number of rows in data, only the former will be used)
+// save - bool, whether you wish to save your tree as file
+// use_saved - bool, whether you want to load a tree from folder instead of building it
+// folder_name - folder to use for saving or loading the tree
 DllExport int32_t build_tree(double* data, int32_t number_points,
 	int32_t hidden_size, int32_t measured_size, int32_t save, 
 	int32_t use_saved, char* folder_name) {
@@ -512,7 +516,7 @@ DllExport int32_t build_tree(double* data, int32_t number_points,
 
 
 //////////////////////////////////////////////////
-//lower only tests, not used in the dll aplication, only for debag
+//in the following there are only tests, which are not used in the dll aplication (only for debug)
 ////////////////////////////////////////////////////
 
 // Fuction for test of saving tree data
@@ -536,7 +540,7 @@ void build_and_save_tree() {
 	int mes_size = 61;
 	int database_size = 300000;
 
-	// read full database, normed not in ahother programm
+	// read full database, normed not in another program
 	double* data = load_binary_data("databasebytes_new", &database_size, &hid_size, &mes_size);
 
 	int upperbound_tree = 2 << (int(logb(database_size)) + 1);
