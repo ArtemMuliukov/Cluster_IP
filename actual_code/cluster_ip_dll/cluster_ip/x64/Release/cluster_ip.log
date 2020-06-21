@@ -1,6 +1,20 @@
-﻿     Creating library E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\x64\Release\cluster_ip.lib and object E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\x64\Release\cluster_ip.exp
+﻿  cluster_ip.cpp
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\cluster_ip\cluster_ip.cpp(232,31): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\cluster_ip\cluster_ip.cpp(232,31): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\cluster_ip\cluster_ip.cpp(289,45): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\cluster_ip\cluster_ip.cpp(289,45): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\cluster_ip\cluster_ip.cpp(291,47): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\cluster_ip\cluster_ip.cpp(291,47): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\cluster_ip\cluster_ip.cpp(351,31): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\cluster_ip\cluster_ip.cpp(351,31): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\cluster_ip\cluster_ip.cpp(406,45): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\cluster_ip\cluster_ip.cpp(406,45): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\cluster_ip\cluster_ip.cpp(408,47): warning C4838:  conversion from 'double' to 'float' requires a narrowing conversion
+E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\cluster_ip\cluster_ip.cpp(408,47): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+     Creating library E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\x64\Release\cluster_ip.lib and object E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\x64\Release\cluster_ip.exp
   Generating code
-  Previous IPDB not found, fall back to full compilation.
-  All 315 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  2 of 315 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   cluster_ip.vcxproj -> E:\OnEngFiles - science\test labview\4_add_cluster_lib\git_version\Cluster_IP\actual_code\cluster_ip_dll\x64\Release\cluster_ip.dll
